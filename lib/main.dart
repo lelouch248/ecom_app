@@ -23,9 +23,6 @@ ThemeData amazonTheme = ThemeData(
       fontFamily: 'Poppins',
     ),
   ),
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)
-      .copyWith(background: Colors.white)
-      .copyWith(secondary: Colors.orange),
 );
 
 class MyApp extends StatelessWidget {
@@ -36,7 +33,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-Commerce App',
-      theme: amazonTheme,
+      theme: ThemeData().copyWith(
+        useMaterial3: true,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 1, 1, 3)),
+      ),
       home: const MyHomePage(),
     );
   }

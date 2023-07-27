@@ -5,26 +5,27 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView( 
+    return CustomScrollView(
       slivers: [
         SliverAppBar(
           floating: true,
           snap: false,
-          pinned: true,
+          pinned: false,
           centerTitle: false,
+          backgroundColor: Colors.black,
           title: Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.white,
-              child: const Center(
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: 'Search',
-                      prefixIcon: Icon(Icons.search),
-                      suffixIcon: Icon(Icons.camera_alt)),
-                ),
+            width: double.infinity,
+            height: 40,
+            color: Colors.white,
+            child: const Center(
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'Search',
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: Icon(Icons.camera_alt)),
               ),
             ),
+          ),
         ),
         SliverList(
           delegate: SliverChildListDelegate([
