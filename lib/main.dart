@@ -23,7 +23,7 @@ ThemeData amazonTheme = ThemeData(
       fontFamily: 'Poppins',
     ),
   ),
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)
       .copyWith(background: Colors.white)
       .copyWith(secondary: Colors.orange),
 );

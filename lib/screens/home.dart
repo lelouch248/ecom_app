@@ -6,8 +6,35 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: CustomAppBar(),
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Image.asset(
+            'assets/images/oruphone.png',
+            height: 50,
+            color: Colors.white,
+          ),
+          actions: [
+            // gotta make the location dynamic
+            TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.location_pin,
+                color: Colors.white,
+              ),
+              label: const Text(
+                'India',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications),
+              color: Colors.white,
+            ),
+          ]),
+      // drawer: Drawer(),
+      body: const CustomAppBar(),
     );
   }
 }
