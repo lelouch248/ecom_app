@@ -1,3 +1,4 @@
+import 'package:ecom_app/screens/deals.dart';
 import 'package:ecom_app/widgets/carousel_slider.dart';
 import 'package:ecom_app/widgets/custom_search.dart';
 import 'package:ecom_app/widgets/shop_by.dart';
@@ -38,15 +39,14 @@ class MyHomePage extends StatelessWidget {
             ),
           ]),
       drawer: const Drawer(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+      body: ListView(
+        shrinkWrap: true,
         children: const [
           SearchBar(),
           TopBrands(),
           SizedBox(height: 150, child: CarouselWithButtons()),
           ShopBy(),
+          Deals(),
         ],
       ),
     );
