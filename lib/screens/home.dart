@@ -1,4 +1,7 @@
-import 'package:ecom_app/widgets/custom_appbar.dart';
+import 'package:ecom_app/widgets/carousel_slider.dart';
+import 'package:ecom_app/widgets/custom_search.dart';
+import 'package:ecom_app/widgets/shop_by.dart';
+import 'package:ecom_app/widgets/top_brands.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -14,6 +17,7 @@ class MyHomePage extends StatelessWidget {
             height: 50,
             color: Colors.white,
           ),
+          iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             // gotta make the location dynamic
             TextButton.icon(
@@ -33,8 +37,18 @@ class MyHomePage extends StatelessWidget {
               color: Colors.white,
             ),
           ]),
-      // drawer: Drawer(),
-      body: const CustomAppBar(),
+      drawer: const Drawer(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SearchBar(),
+          TopBrands(),
+          SizedBox(height: 150, child: CarouselWithButtons()),
+          ShopBy(),
+        ],
+      ),
     );
   }
 }
