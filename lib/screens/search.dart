@@ -1,6 +1,5 @@
 import 'package:ecom_app/widgets/custom_search.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class SearchScreen extends StatefulWidget {
   final List<dynamic> searchResult;

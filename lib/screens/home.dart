@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         children: const [
           SearchBar(),
           TopBrands(),
-          SizedBox(height: 150, child: CarouselWithButtons()),
+          SizedBox(height: 300, child: CarouselWithButtons()),
           ShopBy(),
           Deals(),
         ],

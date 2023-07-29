@@ -9,93 +9,65 @@ class CarouselWithButtons extends StatefulWidget {
 }
 
 class _CarouselWithButtonsState extends State<CarouselWithButtons> {
-  final List<String> slideImages = [
-    'https://via.placeholder.com/350',
-    'https://via.placeholder.com/350',
-    'https://via.placeholder.com/350',
+  final List<String> images = [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTIZccfNPnqalhrWev-Xo7uBhkor57_rKbkw&usqp=CAU",
+    "https://wallpaperaccess.com/full/2637581.jpg",
+    "https://wallpaperaccess.com/full/2637581.jpg"
   ];
 
-  int _currentIndex = 0;
+  int _currentImageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
       children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            height: 150.0,
-            viewportFraction: 1.0,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 3),
-            autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enlargeCenterPage: true,
-          ),
-          items: slideImages.map((imageUrl) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Stack(
-                  children: [
-                    Image.network(
-                      imageUrl,
+        Expanded(
+          child: CarouselSlider(
+            items: [
+              for (String img in images)
+                Container(
+                  height: 700, // Increased the height by 100
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(img),
                       fit: BoxFit.cover,
-                      width: double.infinity,
                     ),
-                    Positioned(
-                      bottom: 16,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: slideImages.map((image) {
-                          int index = slideImages.indexOf(image);
-                          return Container(
-                            width: 8.0,
-                            height: 8.0,
-                            margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _currentIndex == index
-                                  ? Colors.blue
-                                  : Colors.grey,
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              // Implement action for the first ElevatedButton
-                            },
-                            child: const Text('Button 1'),
-                          ),
-                          const SizedBox(width: 16),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Implement action for the second ElevatedButton
-                            },
-                            child: const Text('Button 2'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
+                  ),
+                ),
+            ],
+            options: CarouselOptions(
+              height: 700, // Increased the height by 100
+              enlargeCenterPage: true,
+              autoPlay: true,
+              aspectRatio: 16 / 9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 1000),
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentImageIndex = index;
+                });
               },
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: images.map((img) {
+            int index = images.indexOf(img);
+            return Container(
+              width: 8.0,
+              height: 8.0,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _currentImageIndex == index
+                    ? Colors.blue
+                    : Colors.grey.shade400,
+              ),
             );
           }).toList(),
         ),
