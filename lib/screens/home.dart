@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
       body: ListView(
         shrinkWrap: true,
         children: const [
-          SearchBar(),
+          SearchBar(screenCount: 0),
           TopBrands(),
           SizedBox(height: 150, child: CarouselWithButtons()),
           ShopBy(),
