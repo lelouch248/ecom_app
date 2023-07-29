@@ -22,36 +22,59 @@ class _CarouselWithButtonsState extends State<CarouselWithButtons> {
     return Column(
       children: [
         Expanded(
-          child: CarouselSlider(
-            items: [
-              for (String img in images)
-                Container(
-                  height: 700, // Increased the height by 100
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(img),
-                      fit: BoxFit.cover,
+          child: Stack(
+            children: [
+              CarouselSlider(
+                items: [
+                  for (String img in images)
+                    Container(
+                      height:
+                          600, // Increase the height as per your requirement
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(img),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                ],
+                options: CarouselOptions(
+                  height: 600, // Increase the height as per your requirement
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                  viewportFraction: 1,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentImageIndex = index;
+                    });
+                  },
+                ),
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    // ignore: prefer_const_constructors
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent),
+                    onPressed: () {
+                      // Handle the "Shop Now" button click here
+                    },
+                    child: const Text(
+                      'Shop Now',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
+              ),
             ],
-            options: CarouselOptions(
-              height: 700, // Increased the height by 100
-              enlargeCenterPage: true,
-              autoPlay: true,
-              aspectRatio: 16 / 9,
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enableInfiniteScroll: true,
-              autoPlayAnimationDuration: Duration(milliseconds: 1000),
-              viewportFraction: 1,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentImageIndex = index;
-                });
-              },
-            ),
           ),
         ),
         Row(
