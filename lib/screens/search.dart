@@ -1,37 +1,37 @@
 import 'package:ecom_app/widgets/custom_search.dart';
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SearchScreen extends StatefulWidget {
+  final List<dynamic> searchResult;
+
+  const SearchScreen({super.key, required this.searchResult});
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
   bool isSearchBarFocused = false;
+  var searchableItems = [];
   @override
   Widget build(BuildContext context) {
-    // Replace the example list with your actual searchable items list
-    List<String> searchableItems = [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-    ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("search screen"),
+        title: SearchScreenBar(
+          onSubmit: (searchResult) {
+            setState(() {
+              searchableItems = searchResult;
+            });
+          },
+        ),
       ),
       body: Column(
         children: [
-          const SearchBar(
-            screenCount: 1,
-          ),
           Expanded(
             child: ListView.builder(
               itemCount: searchableItems.length,
               itemBuilder: (context, index) {
+                print(searchableItems[index]);
                 return ListTile(
                   title: Text(searchableItems[index]),
                   onTap: () {
